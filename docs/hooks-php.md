@@ -140,9 +140,9 @@ use Dredd\Hooks;
 
 Hooks::before("Machines > Machines collection > Get Machines", function(&$transaction) {
 
-    $requestBody = $transaction->request->body;
+    $requestBody = json_decode($transaction->request->body);
 
-    $requestBody['someKey'] = 'new value';
+    $requestBody->someKey = 'new value';
 
     $transaction->request->body = json_encode($requestBody);
 });
